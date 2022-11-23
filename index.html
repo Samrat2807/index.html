@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loan.css">
+    <title>Loan application</title>
+</head>
+<style>
+    *{
+    margin:0px;
+    padding:0px;
+    
+    }
+    body{
+      border: white double;
+      background-color:rgba(255, 254, 254, 0.932);
+      color:rgb(91, 105, 231);
+    
+    }
+    fieldset{
+        background-color: rgb(14, 14, 37);
+        height: 16vh;
+    }
+    h1{
+      text-align:center;
+      margin-top:6vh;
+      color: aliceblue;
+    }
+    label{
+      margin:24px;
+      color:rgb(14, 14, 37);
+    }
+   div.form{
+     margin-left:95px;
+     padding:0px;
+    
+   }
+   div,input{
+    padding: 17px;
+    width: 85%;
+    margin-left: 79px;
+     display: block;
+   }
+   input{
+     background:white;
+     border-radius: 202px;
+   }
+   .intrest{
+    width: 195px;
+    margin-top: 31px;
+   }
+   .button{
+     width:25%;
+     font-size: 20px;
+     background: rgb(14, 14, 37);
+     color:white;
+     margin: -18vw 51vw;
+     display: initial;
+   }
+   .button:hover {
+     color: rgb(27, 27, 32);
+     background-color:rgb(223, 217, 217); 
+    
+   }
+   .cal{
+    width:25%;
+     font-size: 20px;
+     background: rgb(14, 14, 37);
+     color:white;
+   }
+   #calculate_op{
+    background-color: rgb(27, 27, 32);
+    color: white;
+    font-size: 20px;
+    width: 222px;
+    align-content: center;
+    margin-left: 82px;
+    cursor: pointer;
+   }
+   #output{
+    font-size: 4em;
+    margin-left: 25vw;
+   }
+   
+</style>
+<body>
+   <fieldset><h1>Loan Application Form</h1></fieldset>
+    <div class="form">
+        <form action="" onsubmit=" return validation()"  name="form1" target="_blank">
+         <div class="input">
+            <label for="full name">Full Name:
+                           <input type="text" id="fullname" placeholder="Full Name" required ></label>
+                          <span id="full" style="color:red"></span>
+            <label for="Email id"> Email Id:
+                           <input type="Email"  id="email" placeholder="Enter email id" required></label>
+                           <span id="mail" style="color:red"></span>
+
+            <label for="PAN">PAN:
+                           <input type="text/number" id="pan" placeholder="Permanent Account Number" pattern="[A-0-9-Z"> </label>
+                           <span id="per" style="color:red"></span>
+
+            <label for="Loan amount">Loan amount:
+                           <input type="number" placeholder="Enter amount" id="amount"  "> </label>
+                           <span id="amount" style="color:red"></span>
+
+
+                           <label>Rate (Interest): % <input step=".1" class="intrest" id="rate" placeholder="8.5">
+                           </label> 
+                           <label>Months (Time): <input type="number" class="intrest" id="time" placeholder="Enter time">
+                           </label> 
+                         <input type="button" class="cal" value="Calculate" id="calculate_op" onclick="calculate()"> 
+                         <p>Total EMI:
+                            <span style="font-weight: 40px; color:black;" id="output"></span>
+                         </p>
+                           <input type="submit" class="button" >
+          </div>
+        </form> 
+
+    </div>
+    <script> 
+        //EMI showing on intrest 8.5%
+        function calculate(){ 
+                 amount=document.getElementById('amount').value 
+                   rate=document.getElementById('rate').value;
+                   time=document.getElementById('time').value;
+                    const interest = (amount * (rate * 0.01)) / time; 
+                    let emi = ((amount / time) + interest).toFixed(2);
+                     emi = emi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                      document.getElementById("output").innerHTML=emi
+            }
+           </script>
+</body>
+</html>
